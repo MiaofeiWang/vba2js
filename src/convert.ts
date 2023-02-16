@@ -16,14 +16,15 @@ export const progressWnd = vscode.commands.registerCommand('extension.startTask'
             console_info(`create task: ${taskId}`);
             vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "!",
+                title: "vba2js progress",
                 cancellable: true
-            }, (progress, token) => {
+            }, async (progress, token) => {
                 token.onCancellationRequested(() => {
                     console_info("User canceled the long running operation");
                 });
 
                 let lastProgress = 0;
+                let curProgress = 0;
                 let times = 0;
                 const maxTimes = 10;
 
@@ -31,31 +32,30 @@ export const progressWnd = vscode.commands.registerCommand('extension.startTask'
 
                 const getStatusUrl = util.api.vba2js.taskProgress.replace("{project_id}", projectId).replace("{task_id}", taskId);
                 const startTime = Date.now().valueOf();
-                while (lastProgress < 100 && times < maxTimes) {
+                while (lastProgress < 100) {
+                    // eslint-disable-next-line no-var
+                    var increment = 0;
                     Promise.resolve(get(getStatusUrl, {}).then((res) => {
                         if (res.status == 200 && res.data != null) {
-                            const curProgress = res.data.progress;
-                            // const increment = curProgress - lastProgress;
-                            const increment = 20 + times * 20;
+                            curProgress = res.data.progress;
+                            increment = curProgress - lastProgress;
+                            // increment = 20 + times * 20;
                             lastProgress = curProgress;
-                            console_info("running");
+                            console_info(`running current progress ${curProgress}`);
                             progress.report({ increment: increment, message: "still converting, wait ..... " });
                         }
                     }));
+                    await new Promise(resolve => setTimeout(resolve, 3000));
                     times++;
                 }
+                await new Promise(resolve => setTimeout(resolve, 5000));
                 const endTime = Date.now().valueOf();
                 const laps = endTime - startTime;
                 const summary = `project: ${projectId} task:  ${taskId}  finished in ${laps} milliseconds loop times: ${times}`;
-                if (times >= maxTimes) {
-                    console_error(`convertion failed!!!! Here's the summary`);
-                    console_error(summary);
-                } else {
-                    console_info(`task finished sucessfully!!! Here's the summary`);
-                    console_info(summary);
-                    // task finished, save the converted files.
-                    vscode.commands.executeCommand("extension.saveResult", projectId, taskId, targetDir);
-                }
+                console_info(`task finished sucessfully!!! Here's the summary`);
+                console_info(summary);
+                // task finished, save the converted files.
+                vscode.commands.executeCommand("extension.saveResult", projectId, taskId, targetDir);
                 // debug
                 vscode.commands.executeCommand("extension.saveResult", projectId, taskId, targetDir);
 
@@ -70,3 +70,4 @@ export const progressWnd = vscode.commands.registerCommand('extension.startTask'
         }
     });
 });
+

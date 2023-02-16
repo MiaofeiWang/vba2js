@@ -40,6 +40,9 @@
         },
         {
             "include": "#fail"
+        },
+        {
+            "include": "#success"
         }
     ],
     "repository": {
@@ -98,6 +101,10 @@
         "executing": {
             "match": "^\\s*((>+)|([Ee]xec(ute)?)|([Ee]xport)|([Tt]ask))\\s.*$",
             "name": "markup.inserted rnt.output.process"
+        },
+        "success": {
+            "match": "\\[success\\]:?\\b.*$",
+            "name": "markup.bold markup.inserted rnt.output.info"
         }
     }
 }

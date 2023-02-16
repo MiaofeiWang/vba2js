@@ -1,27 +1,29 @@
-# Hello World Sample
+# Convert VBA to JS
 
-This is a Hello World example that shows you how to use VS Code API.
+This is visual studio code extension that convert VBA to JS code.
 
-Guide for this sample: https://code.visualstudio.com/api/get-started/your-first-extension.
+
+____   ____ __________     _____                       __          ____. _________
+\   \ /   / \______   \   /  _  \                      \ \        |    |/   _____/
+ \   Y   /   |    |  _/  /  /_\  \    ______   ______   \ \       |    |\_____  \ 
+  \     /    |    |   \ /    |    \  /_____/  /_____/   / /   /\__|    |/        \
+   \___/     |______  / \____|__  /                    /_/    \________/_______  /
+                    \/          \/                                             \/ 
+
 
 ## Demo
 
-![demo](demo.gif)
+TODO
 
-## VS Code API
+## Main features
 
-### `vscode` module
+### `vba2js` module
 
-- [`commands.registerCommand`](https://code.visualstudio.com/api/references/vscode-api#commands.registerCommand)
-- [`window.showInformationMessage`](https://code.visualstudio.com/api/references/vscode-api#window.showInformationMessage)
+- Convert multiple vba files to js in seleted target folder: right click the vba files and selete "Convert vba to js" button
+- Select part of the vba code, convert the codesnippet to js and display in target cursor point of the active editor 
+- Select the code and interact with ChatGpt to optimize/explain/fix error the code.
 
-### Contribution Points
 
-- [`contributes.commands`](https://code.visualstudio.com/api/references/contribution-points#contributes.commands)
+## Have a try
 
-## Running the Sample
-
-- Run `npm install` in terminal to install dependencies
-- Run the `Run Extension` target in the Debug View. This will:
-	- Start a task `npm: watch` to compile the code
-	- Run the extension in a new VS Code window
+- Please search the 'vba2js' in Extension Marketplace and install

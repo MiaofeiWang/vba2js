@@ -40,9 +40,10 @@ export const selectSrcTgtFile = vscode.commands.registerCommand('extension.confi
         }
 
         const name = "Project name";
-        const description: string = "ConvertFileOf" + [...srcFiles.values()].join(",");
+        const description = "convert file description";
         const createProjectURLPath = util.api.vba2js.createProject;
         const projectParam: util.ProjectParams = util.setProjectParams(name, description, "vb", "js", srcFiles);
+        console.log(projectParam.project);
         post(createProjectURLPath, projectParam).then((res) => {
             if (res.status == 200 && res.data != null) {
                 const projectId = res.data.project_id;

@@ -35,7 +35,7 @@ export interface ProjectParams {
     description: string;
     source_lang: string;
     target_lang: string;
-    project: Map<string, string>
+    project: { [x: string]: string; }
 }
 
 enum triggerType {
@@ -56,12 +56,16 @@ export interface TriggerTaskParams {
 
 export const setProjectParams = (_name: string, _description: string, _source_lang: string, _target_lang: string, _project: Map<string, string>): ProjectParams => {
 
+    const obj: { [x: string]: string; } = {};
+    [..._project.entries()].map((arr, index) => {
+        obj[arr[0]] = arr[1];
+    });
     const projecParam: ProjectParams = {
         name: _name,
         description: _description,
         source_lang: _source_lang,
         target_lang: _target_lang,
-        project: _project
+        project: obj
     };
     return projecParam;
 };
@@ -86,5 +90,6 @@ export const setTriggerTaskParams = (_project_id: string, _setting: TriggerSetti
 
 export const vba2js_console: vscode.OutputChannel = vscode.window.createOutputChannel("VBA2JS CONSOLE", "vba2js_log");
 export const console_info = (log: string) => vba2js_console.appendLine(`[info]:${log}`);
+export const console_suc = (log: string) => vba2js_console.appendLine(`[success]:${log}`);
 export const console_error = (log: string) => vba2js_console.appendLine(`[error]:${log}`);
 export const console_append = (tail_log: string) => vba2js_console.append(`${tail_log}`); 
