@@ -8,7 +8,12 @@ import { api, codeAssistantPrompts } from './config';
 import { selectSrcTgtFile } from './selectSrcTgt';
 import { progressWnd } from './convert';
 import { save2TargetDir } from './saveResult';
+import { compareWithSourceFile } from './compareFIle';
+import { translateCodeSnippet } from './translateSnippet';
+import { insertResultAtCur } from './insertResultAtCur';
 import { CodeAssistantViewProvider } from './codeAssistant';
+
+const fileNameToFullSourceFilePathMap = new Map<string, string>();
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -47,20 +52,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(save2TargetDir);
 
-	const compareWithSourceFile = vscode.commands.registerCommand('extension.compareWithSourceFile', (clickedFileUri: vscode.Uri) => {
-		// The code you place here will be executed every time your command is executed
-
-		// Compare with the corresponding source file.
-		const targetFile = clickedFileUri.fsPath;
-		const targetFileUri = vscode.Uri.file(targetFile);
-		vscode.window.showTextDocument(targetFileUri, { viewColumn: vscode.ViewColumn.Two });
-
-		const sourceFile = "C:\\vsaddin\\HelloWorld\\vscode-extension-samples\\helloworld-sample\\src\\config.ts";
-		const sourceFileUri = vscode.Uri.file(sourceFile);
-		vscode.window.showTextDocument(sourceFileUri, { viewColumn: vscode.ViewColumn.One });
-	});
-
 	context.subscriptions.push(compareWithSourceFile);
+	
+	context.subscriptions.push(translateCodeSnippet);
+
+	context.subscriptions.push(insertResultAtCur);
 
 	const provider = new CodeAssistantViewProvider(context.extensionUri);
 	const codeAssistantProvider = vscode.window.registerWebviewViewProvider(CodeAssistantViewProvider.viewType, provider, {

@@ -41,6 +41,10 @@
 					"command": "codeAssistant.findMisuse",
 					"when": "editorHasSelection",
 					"group": "codeassistant-menu-group@2"
+				},
+				{
+					"command": "extension.translateCodeSnippet",
+					"group": "1_modification"
 				}
 			]
 		},
@@ -59,11 +63,20 @@
 			},
 			{
 				"command": "extension.compareWithSourceFile",
-				"title": "Compare with source file"
+				"title": "[Translater]Compare with the VBA file",
+				"icon": "./src/convertIcon.svg"
 			},
 			{
 				"command": "extension.saveResult",
 				"title": "Save the converted files"
+			},
+			{
+				"command": "extension.insertResultAtCur",
+				"title": "insertResultAtCur"
+			},
+			{
+				"command": "extension.translateCodeSnippet",
+				"title": "[Translater]Insert translated codeSnippet"
 			},
 			{
 				"command": "codeAssistant.explain",
