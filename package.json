@@ -1,0 +1,89 @@
+{
+	"name": "vba2js",
+	"displayName": "vba2js",
+	"description": "convert vba to js",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "extension.configSrcTgt",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.compareWithSourceFile",
+					"group": "3_compare"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "extension.compareWithSourceFile",
+					"group": "navigation"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "extension.startTask",
+				"title": "Show Progress"
+			},
+			{
+				"command": "extension.configSrcTgt",
+				"title": "Convert vba to js"
+			},
+			{
+				"command": "extension.compareWithSourceFile",
+				"title": "Compare with source file"
+			},
+			{
+				"command": "extension.saveResult",
+				"title": "Save the converted files"
+			}
+		],
+		"languages": [
+			{
+				"id": "vba2js_log"
+			}
+		],
+		"grammars": [
+			{
+				"language": "vba2js_log",
+				"scopeName": "react-native-tools-output",
+				"path": "./syntaxes/vba2js_log.tmGrammar.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.7",
+		"@types/qs": "^6.9.7",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^5.42.0",
+		"@typescript-eslint/parser": "^5.42.0",
+		"axios": "^0.27.2",
+		"eslint": "^8.26.0",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"qs": "^6.11.0"
+	}
+}

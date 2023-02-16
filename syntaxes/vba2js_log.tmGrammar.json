@@ -1,0 +1,103 @@
+{
+    "scopeName": "react-native-tools-output",
+    "patterns": [
+        
+        {
+            "include": "string-single-quoted"
+        },
+        {
+            "include": "string-single-quoted"
+        },
+        {
+            "include": "#filepath"
+        },
+        {
+            "include": "#date-MM/DD/(YY)YY"
+        },
+        {
+            "include": "#date-(YY)YY/DD/MM"
+        },
+        {
+            "include": "#date-DD/MM/(YY)YY"
+        },
+        {
+            "include": "#date-ISO"
+        },
+        {
+            "include": "#time"
+        },
+        {
+            "include": "#error-tag"
+        },
+        {
+            "include": "#warn-tag"
+        },
+        {
+            "include": "#info-tag"
+        },
+        {
+            "include": "#debug-tag"
+        },
+        {
+            "include": "#fail"
+        }
+    ],
+    "repository": {
+        "string-double-quoted": {
+            "match": "\"(.*?)\"",
+            "name": "string.quoted rnt.output.string"
+        },
+        "string-single-quoted": {
+            "match": "'(.*?)'",
+            "name": "string.quoted rnt.output.string"
+        },
+        "filepath": {
+            "match": "(([a-zA-Z]:)|((\\\\|\/){1,2}\\w+)\\$?)((\\\\|\/)(\\w[\\w ]*.*))+\\.([a-zA-Z0-9]+)",
+            "name": "markup.underline.link rnt.output.url"
+        },
+        "date-MM/DD/(YY)YY": {
+            "match": "\\b(((0|1)?[0-9][1-2]?)|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?))[/|\\-|\\.| ]([0-2]?[0-9]|[3][0-1])[/|\\-|\\.| ]((19|20)?[0-9]{2})\\b",
+            "name": "constant.numeric rnt.output.timestamp"
+        },
+        "date-(YY)YY/DD/MM": {
+            "match": "\\b((19|20)?[0-9]{2}[/|\\-|\\.| ](((0|1)?[0-9][1-2]?)|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?))[/|\\-|\\.| ]([0-2]?[0-9]|[3][0-1]))\\b",
+            "name": "constant.numeric rnt.output.timestamp"
+        },
+        "date-DD/MM/(YY)YY": {
+            "match": "\\b([0-2]?[0-9]|[3][0-1])[/|\\-|\\.| ](((0|1)?[0-9][1-2]?)|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?))[/|\\-|\\.| ]((19|20)?[0-9]{2})\\b",
+            "name": "constant.numeric rnt.output.timestamp"
+        },
+        "date-ISO": {
+            "match": "\\b\\d{4}-\\d{2}-\\d{2}(T|\\b)",
+            "name": "constant.numeric rnt.output.timestamp"
+        },
+        "time": {
+            "match": "\\d{1,2}:\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}:\\d{2})?(.\\d{3})?",
+            "name": "constant.numeric rnt.output.timestamp"
+        },
+        "error-tag": {
+            "match": "\\[(Down|Error|Failure|Fail|Fatal|DOWN|ERROR|error|FAILURE|FAIL|FATAL)\\]:?\\b.*$",
+            "name": "markup.bold invalid.illegal rnt.output.error"
+        },
+        "warn-tag": {
+            "match": "\\[(warning|warn|Warning|Warn|WARNING|WARN)\\]",
+            "name": "markup.bold markup.deleted rnt.output.warn"
+        },
+        "info-tag": {
+            "match": "\\[(hint|info|information|true|log|Hint|Info|Information|Log|HINT|INFO|INFORMATION|LOG)\\]",
+            "name": "markup.bold markup.inserted rnt.output.info"
+        },
+        "debug-tag": {
+            "match": "\\[(debug|Debug|DEBUG)\\]",
+            "name": "markup.bold markup.changed rnt.output.debug"
+        },
+        "fail": {
+            "match": "\\b(Exception|Error|Failure|Fail|EXCEPTION|ERROR|FAILURE|FAIL):?\\b.*$",
+            "name": "invalid rnt.output.error"
+        },
+        "executing": {
+            "match": "^\\s*((>+)|([Ee]xec(ute)?)|([Ee]xport)|([Tt]ask))\\s.*$",
+            "name": "markup.inserted rnt.output.process"
+        }
+    }
+}
