@@ -17,7 +17,7 @@ export const codeAssistantApi = {
 
 export const codeAssistantPrompts = {
     explain: "Explain what the following Microsoft Word API JavaScript code does: {selected_code}",
-    findProblems: "Find problems with the following Microsoft Word API JavaScript code, fix them and explain what was wrong (Do not change anything else): {selected_code}"
+    findMisuse: "The following Microsoft Word API JavaScript code may have some misuse of functions/APIs, fix them and explain what was wrong (Do not change anything else): {selected_code}"
 };
 
 /**

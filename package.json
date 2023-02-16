@@ -38,7 +38,7 @@
 					"group": "codeassistant-menu-group@1"
 				},
 				{
-					"command": "codeAssistant.findProblems",
+					"command": "codeAssistant.findMisuse",
 					"when": "editorHasSelection",
 					"group": "codeassistant-menu-group@2"
 				}
@@ -70,8 +70,8 @@
 				"title": "VBA2Js Assistant: Explain selected Code"
 			},
 			{
-				"command": "codeAssistant.findProblems",
-				"title": "VBA2Js Assistant: Find problems of selected Code"
+				"command": "codeAssistant.findMisuse",
+				"title": "VBA2Js Assistant: Find misuse of API of selected Code"
 			}
 		],
 		"languages": [

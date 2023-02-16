@@ -72,10 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 		provider.request(codeAssistantPrompts.explain);
 	});
 
-	const codeAssistantFindProblems = vscode.commands.registerCommand('codeAssistant.findProblems', () => {	
-		provider.request(codeAssistantPrompts.findProblems);
+	const codeAssistantFindMisuse = vscode.commands.registerCommand('codeAssistant.findMisuse', () => {	
+		provider.request(codeAssistantPrompts.findMisuse);
 	});
 
-	context.subscriptions.push(codeAssistantExplain, codeAssistantFindProblems);
+	context.subscriptions.push(codeAssistantExplain, codeAssistantFindMisuse);
 
 }
