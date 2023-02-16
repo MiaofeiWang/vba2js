@@ -10,6 +10,16 @@ export const api = {
     }
 };
 
+export const codeAssistantApi = {
+    baseurl: "https://augloop-cs-test-scus-shared-open-ai-0.openai.azure.com",
+    deploymentname: "text-davinci-003"
+};
+
+export const codeAssistantPrompts = {
+    explain: "Explain what the following Microsoft Word API JavaScript code does: {selected_code}",
+    findProblems: "Find problems with the following Microsoft Word API JavaScript code, fix them and explain what was wrong (Do not change anything else): {selected_code}"
+};
+
 /**
  * ____   ____ __________     _____                       __          ____. _________
 \   \ /   / \______   \   /  _  \                      \ \        |    |/   _____/

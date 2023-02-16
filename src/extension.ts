@@ -4,10 +4,11 @@
 import * as vscode from 'vscode';
 import { console_info, vba2js_console, boot_tag } from './config';
 import { get } from './request';
-import { api } from './config';
+import { api, codeAssistantPrompts } from './config';
 import { selectSrcTgtFile } from './selectSrcTgt';
 import { progressWnd } from './convert';
 import { save2TargetDir } from './saveResult';
+import { CodeAssistantViewProvider } from './codeAssistant';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -60,5 +61,21 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(compareWithSourceFile);
+
+	const provider = new CodeAssistantViewProvider(context.extensionUri);
+	const codeAssistantProvider = vscode.window.registerWebviewViewProvider(CodeAssistantViewProvider.viewType, provider, {
+		webviewOptions: { retainContextWhenHidden: true }
+	});
+	context.subscriptions.push(codeAssistantProvider);
+
+	const codeAssistantExplain = vscode.commands.registerCommand('codeAssistant.explain', () => {	
+		provider.request(codeAssistantPrompts.explain);
+	});
+
+	const codeAssistantFindProblems = vscode.commands.registerCommand('codeAssistant.findProblems', () => {	
+		provider.request(codeAssistantPrompts.findProblems);
+	});
+
+	context.subscriptions.push(codeAssistantExplain, codeAssistantFindProblems);
 
 }

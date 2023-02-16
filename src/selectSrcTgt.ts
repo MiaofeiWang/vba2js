@@ -13,7 +13,7 @@ export const selectSrcTgtFile = vscode.commands.registerCommand('extension.confi
         canSelectMany: false,
         canSelectFiles: false,
         canSelectFolders: true,
-        openLabel: 'Selectfolderforconvertedfiles',
+        openLabel: 'Select folder for converted files',
     };
     if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders[0]) {
         options.defaultUri = vscode.workspace.workspaceFolders[0].uri;

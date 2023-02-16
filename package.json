@@ -30,6 +30,18 @@
 					"command": "extension.compareWithSourceFile",
 					"group": "navigation"
 				}
+			],
+			"editor/context": [
+				{
+					"command": "codeAssistant.explain",
+					"when": "editorHasSelection",
+					"group": "codeassistant-menu-group@1"
+				},
+				{
+					"command": "codeAssistant.findProblems",
+					"when": "editorHasSelection",
+					"group": "codeassistant-menu-group@2"
+				}
 			]
 		},
 		"commands": [
@@ -52,6 +64,14 @@
 			{
 				"command": "extension.saveResult",
 				"title": "Save the converted files"
+			},
+			{
+				"command": "codeAssistant.explain",
+				"title": "VBA2Js Assistant: Explain selected Code"
+			},
+			{
+				"command": "codeAssistant.findProblems",
+				"title": "VBA2Js Assistant: Find problems of selected Code"
 			}
 		],
 		"languages": [
@@ -65,7 +85,25 @@
 				"scopeName": "react-native-tools-output",
 				"path": "./syntaxes/vba2js_log.tmGrammar.json"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+			  {
+				"id": "vba2js",
+				"title": "VBA2Js Assistant",
+				"icon": "resources/icon.png"
+			  }
+			]
+		  },
+		  "views": {
+			"vba2js": [
+			  {
+				"type": "webview",
+				"id": "vba2js.codeAssistant",
+				"name": "VBA2Js Assistant"
+			  }
+			]
+		  }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
